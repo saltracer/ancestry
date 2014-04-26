@@ -79,11 +79,3 @@ class << ActiveRecord::Base
     after_destroy :touch_ancestors_callback
   end
 end
-
-ActiveSupport.on_load :active_record do
-  if not(ActiveRecord::Base.respond_to?(:acts_as_tree))
-    class << ActiveRecord::Base
-      alias_method :acts_as_tree, :has_ancestry
-    end
-  end
-end
